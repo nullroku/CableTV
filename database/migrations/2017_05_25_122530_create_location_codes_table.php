@@ -15,6 +15,8 @@ class CreateLocationCodesTable extends Migration
     {
         Schema::create('location_codes', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('location');
+            $table->string('code');
             $table->timestamps();
         });
     }

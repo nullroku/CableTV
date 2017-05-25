@@ -14,7 +14,7 @@ class LocationCodeController extends Controller
      */
     public function index()
     {
-        //
+        return LocationCode::all();
     }
 
     /**
@@ -35,7 +35,10 @@ class LocationCodeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      return LocationCode::create([
+        'location' => $request->location;
+        'code' => $request->code;
+      ])
     }
 
     /**
@@ -69,7 +72,10 @@ class LocationCodeController extends Controller
      */
     public function update(Request $request, LocationCode $locationCode)
     {
-        //
+        $locationCode->update([
+          'location' => $request->location;
+          'code' => $request->code;
+        ])
     }
 
     /**
@@ -80,6 +86,6 @@ class LocationCodeController extends Controller
      */
     public function destroy(LocationCode $locationCode)
     {
-        //
+        $locationCode->delete();
     }
 }

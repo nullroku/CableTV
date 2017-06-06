@@ -15,4 +15,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('/locationcode','LocationCodeController');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/locationcode',function ()
+{
+  return view('LocationCode/indexlocationcode');
+});
+
+Route::resource('/locationcode-api','LocationCodeController');

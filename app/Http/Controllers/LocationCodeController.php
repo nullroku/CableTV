@@ -36,9 +36,10 @@ class LocationCodeController extends Controller
     public function store(Request $request)
     {
       return LocationCode::create([
-        'location' => $request->location;
-        'code' => $request->code;
-      ])
+        'location' => $request->location,
+        'code' => $request->code
+      ]);
+
     }
 
     /**
@@ -70,12 +71,20 @@ class LocationCodeController extends Controller
      * @param  \App\LocationCode  $locationCode
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, LocationCode $locationCode)
+    public function update(Request $request, LocationCode $locationCode, $id)
     {
-        $locationCode->update([
-          'location' => $request->location;
-          'code' => $request->code;
-        ])
+        // $locationCode->update([
+        //   'location' => $request->location,
+        //   'code' => $request->code
+        // ]);
+
+        $locationCode = LocationCode::find($id);
+        $locationCode->location = $request->location;
+        $locationCode->code = $request->code;
+
+        $locationCode->save();
+
+        return "success";
     }
 
     /**
@@ -84,8 +93,12 @@ class LocationCodeController extends Controller
      * @param  \App\LocationCode  $locationCode
      * @return \Illuminate\Http\Response
      */
-    public function destroy(LocationCode $locationCode)
+    public function destroy(LocationCode $locationCode, $id)
     {
-        $locationCode->delete();
+        // $locationCode->delete();
+
+        LocationCode::find($id)->delete();
+
+        return "success";
     }
 }
